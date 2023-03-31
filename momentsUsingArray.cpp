@@ -2,7 +2,7 @@
 #include <cmath>
 using namespace std;
 
-double rmCalc(int arr[], int n, int r) {
+double rmCalc(double arr[], int n, int r) {
 	double sum = 0;
 	
 	for(int i = 0; i < n; i++) {
@@ -12,7 +12,7 @@ double rmCalc(int arr[], int n, int r) {
 	return sum / n;
 }
 
-double cmCalc(int arr[], int n, int r) {
+double cmCalc(double arr[], int n, int r) {
 	double mean = rmCalc(arr, n, 1);
 	double sum = 0;
 	
@@ -23,7 +23,7 @@ double cmCalc(int arr[], int n, int r) {
 	return sum/n;
 }
 
-double sk(int arr[], int n) {
+double sk(double arr[], int n) {
 	double CM2 = cmCalc(arr, n, 2);
 	double CM3 = cmCalc(arr, n, 3);
 	
@@ -31,7 +31,7 @@ double sk(int arr[], int n) {
 	return result;
 }
 
-double kr(int arr[], int n) {
+double kr(double arr[], int n) {
 	double CM2 = cmCalc(arr, n, 2);
 	double CM4 = cmCalc(arr, n, 4);
 	
@@ -40,20 +40,37 @@ double kr(int arr[], int n) {
 }
 
 
-int main() {
-	int n = 10;
-	int results[n] = {34, 54, 78, 90, 76, 64, 92, 76, 85, 79};
+void calculation() {
+	int n;
+	cout << "How many numbers do you have? => ";
+	cin >> n;
 	
+	double results[n];
+	for(int i = 0; i<n; i++) {
+		cout << i+1 << ": ";
+		cin >> results[i];
+	}
+	
+	cout << endl;
+	
+	for(int i = 0; i<n; i++) {
+		if(i < n-1) {
+			cout << results[i] << ", ";
+		} else {
+			cout << results[i] << endl << endl;
+		}
+	}
 	
 	double RM1 = rmCalc(results, n, 1);
 	double RM2 = rmCalc(results, n, 2);
 	double RM3 = rmCalc(results, n, 3);
 	double RM4 = rmCalc(results, n, 4);
 	
+	
 	cout << "RM1 => " << RM1 << endl;
 	cout << "RM2 => " << RM2 << endl;
 	cout << "RM3 => " << RM3 << endl;
-	cout << "RM4 => " << RM4 << endl;
+	cout << "RM4 => " << RM4 << endl << endl;
 	
 	double CM1 = 0;
 	double CM2 = cmCalc(results, n, 2);
@@ -63,11 +80,26 @@ int main() {
 	cout << "CM1 => " << CM1 << endl;
 	cout << "CM2 => " << CM2 << endl;
 	cout << "CM3 => " << CM3 << endl;
-	cout << "CM4 => " << CM4 << endl;
+	cout << "CM4 => " << CM4 << endl << endl;
 	
 	double SK = sk(results, n);
 	double KR = kr(results, n);
 	
 	cout << "SK => " << SK << endl;
-	cout << "KR => " << KR << endl;
+	cout << "KR => " << KR << endl << endl;
+	
+}
+
+int main() {
+	char confirmation;
+	do {
+		calculation();
+		
+		cout << "Do you want to calcultate again? (y/n) => ";
+		
+		cin >> confirmation;
+		cout << endl;
+	} while (confirmation == 'y');
+	
+	return 0;
 }

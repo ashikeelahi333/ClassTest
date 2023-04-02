@@ -5,7 +5,6 @@ using namespace std;
 
 int n = 10;
 int arr[] = {99, 69, 96, 85, 68, 58, 80, 90, 100, 65};
-//double arr[n];
 
 
 // Calculation Functions
